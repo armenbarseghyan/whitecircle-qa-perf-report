@@ -1,0 +1,45 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>check-session — performance report</title><style>
+:root{--ink:#1c2128;--mut:#6b7480;--line:#e7eaee;--blue:#4f7cff;--green:#30a46c;--red:#e5484d}
+*{box-sizing:border-box}body{font:14px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:var(--ink);margin:0;background:#f4f6f9}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 48px}
+header{background:linear-gradient(120deg,#3b5bdb,#7048e8);color:#fff;padding:28px 20px;margin-bottom:24px}
+header .wrap{padding-bottom:0}h1{margin:0;font-size:22px;font-weight:700}.sub{opacity:.85;font-size:13px;margin-top:6px}
+.pill{display:inline-block;padding:5px 14px;border-radius:999px;font-weight:700;font-size:13px;margin-top:12px}
+.pill.pass{background:#1b6b3f;color:#d6ffe6}.pill.fail{background:#7a1d1f;color:#ffd9da}
+h2{font-size:15px;margin:30px 0 10px;color:#2b313a}
+.cards{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0}
+.card{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-size:24px;font-weight:700;margin-top:2px}.card.gpass{border-top:3px solid var(--green)}.card.gfail{border-top:3px solid var(--red)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:6px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}thead th{color:var(--mut);font-weight:600;border-bottom:2px solid var(--line)}
+.b-pass{color:var(--green);font-weight:700}.b-fail{color:var(--red);font-weight:700}
+.mut{color:var(--mut);font-size:12px}.chips{margin:2px 0 0}.chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;margin:0 6px 6px 0}
+a{color:var(--blue);text-decoration:none}
+</style></head><body>
+<header><div class='wrap'><h1>check-session — Performance Report</h1>
+<div class='sub'>target <b>mock</b> · generated mock · load shapes · SLO source <b>[ASSUMPTION]</b> (no published WhiteCircle SLO)</div>
+<span class='pill pass'>SMOKE GATE: PASS</span></div></header><div class='wrap'>
+<div class='cards'>
+<div class='card '><div class='k'>p50</div><div class='v'>80<span class='mut'> ms</span></div></div>
+<div class='card gpass'><div class='k'>p95</div><div class='v'>104<span class='mut'> ms</span></div></div>
+<div class='card gpass'><div class='k'>p99</div><div class='v'>107<span class='mut'> ms</span></div></div>
+<div class='card '><div class='k'>throughput</div><div class='v'>7.1<span class='mut'> rps</span></div></div>
+<div class='card gpass'><div class='k'>error rate</div><div class='v'>0.00<span class='mut'> %</span></div></div>
+</div>
+<h2>SLO checks</h2><div class='panel'><table><thead><tr><th>Criterion</th><th>Observed</th><th>Result</th></tr></thead><tbody>
+<tr><td>p95 &lt; 1500 ms</td><td>104 ms</td><td class='b-pass'>PASS</td></tr>
+<tr><td>p99 &lt; 3000 ms</td><td>107 ms</td><td class='b-pass'>PASS</td></tr>
+<tr><td>error &lt; 1%</td><td>0.00%</td><td class='b-pass'>PASS</td></tr>
+</tbody></table><div class='mut' style='margin-top:8px'>429/5xx counted: 0 / 0 (server-side; k6 does not retry).</div></div>
+<h2>Scenario comparison — p95 by load shape</h2><div class='panel'><svg viewBox="0 0 600 110" width="100%" style="max-width:600px" role="img"><text x="88" y="28" font-size="12" text-anchor="end" fill="#5b6470">smoke</text><rect x="96" y="15" width="72" height="18" rx="4" fill="#4f7cff"/><text x="176" y="28" font-size="12" fill="#2b313a">104ms</text><text x="88" y="58" font-size="12" text-anchor="end" fill="#5b6470">breakpoint</text><rect x="96" y="45" width="440" height="18" rx="4" fill="#4f7cff"/><text x="544" y="58" font-size="12" fill="#2b313a">627ms</text><text x="88" y="88" font-size="12" text-anchor="end" fill="#5b6470">spike</text><rect x="96" y="75" width="3" height="18" rx="4" fill="#4f7cff"/><text x="107" y="88" font-size="12" fill="#2b313a">5ms</text></svg>
+<table style='margin-top:10px'><thead><tr><th>scenario</th><th>reqs</th><th>RPS</th><th>error%</th><th>p50</th><th>p95</th><th>p99</th><th>5xx</th></tr></thead><tbody>
+<tr><td>smoke</td><td>144</td><td>7.1</td><td>0.00</td><td>80</td><td>104</td><td>107</td><td>0</td></tr>
+<tr><td>breakpoint</td><td>2407</td><td>78.6</td><td>25.34</td><td>101</td><td>627</td><td>645</td><td>610</td></tr>
+<tr><td>spike</td><td>405926</td><td>10128.0</td><td>99.26</td><td>4</td><td>5</td><td>7</td><td>402938</td></tr>
+</tbody></table></div>
+<h2>Key findings</h2><div class='chips'><span class='chip'>🚩 rate-limit knee ~5 RPS/key, no <code>Retry-After</code></span><span class='chip'>📦 no size cap (≤5 MB → 11.5 s)</span><span class='chip'>🐛 version trap: session needs 2026-04-15</span><span class='chip'>✅ latency flat vs size & turns</span></div>
+<p class='mut' style='margin-top:18px'>Full analysis: <a href='../PERF_REPORT.md'>PERF_REPORT.md</a> · findings: <a href='../FINDINGS.md'>FINDINGS.md</a> · harness validation: <a href='../MOCK_VALIDATION.md'>MOCK_VALIDATION.md</a></p>
+</div></body></html>
