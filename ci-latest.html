@@ -1,0 +1,61 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>check-session — performance report</title><style>
+:root{--ink:#1c2128;--mut:#6b7480;--line:#e7eaee;--blue:#4f7cff;--green:#30a46c;--red:#e5484d}
+*{box-sizing:border-box}body{font:14px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;color:var(--ink);margin:0;background:#f4f6f9}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 48px}
+header{background:linear-gradient(120deg,#3b5bdb,#7048e8);color:#fff;padding:28px 20px;margin-bottom:24px}
+header .wrap{padding-bottom:0}h1{margin:0;font-size:22px;font-weight:700}.sub{opacity:.85;font-size:13px;margin-top:6px}
+.pill{display:inline-block;padding:5px 14px;border-radius:999px;font-weight:700;font-size:13px;margin-top:12px}
+.pill.pass{background:#1b6b3f;color:#d6ffe6}.pill.fail{background:#7a1d1f;color:#ffd9da}
+h2{font-size:15px;margin:30px 0 10px;color:#2b313a}
+.cards{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0}
+.card{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-size:24px;font-weight:700;margin-top:2px}.card.gpass{border-top:3px solid var(--green)}.card.gfail{border-top:3px solid var(--red)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:6px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}thead th{color:var(--mut);font-weight:600;border-bottom:2px solid var(--line)}
+.b-pass{color:var(--green);font-weight:700}.b-fail{color:var(--red);font-weight:700}
+.mut{color:var(--mut);font-size:12px}.chips{margin:2px 0 0}.chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;margin:0 6px 6px 0}
+a{color:var(--blue);text-decoration:none}
+</style></head><body>
+<header><div class='wrap'><h1>check-session — Performance Report</h1>
+<div class='sub'>target <b>mock</b> · generated 2026-06-05 06:53 · SLO source <b>[ASSUMPTION]</b> (no published WhiteCircle SLO)</div>
+<span class='pill pass'>SMOKE GATE: PASS</span></div></header><div class='wrap'>
+<div class='cards'>
+<div class='card '><div class='k'>p50</div><div class='v'>75<span class='mut'> ms</span></div></div>
+<div class='card gpass'><div class='k'>p95</div><div class='v'>95<span class='mut'> ms</span></div></div>
+<div class='card gpass'><div class='k'>p99</div><div class='v'>99<span class='mut'> ms</span></div></div>
+<div class='card '><div class='k'>throughput</div><div class='v'>7.2<span class='mut'> rps</span></div></div>
+<div class='card gpass'><div class='k'>error rate</div><div class='v'>0.00<span class='mut'> %</span></div></div>
+</div>
+<h2>SLO checks</h2><div class='panel'><table><thead><tr><th>Criterion</th><th>Observed</th><th>Result</th></tr></thead><tbody>
+<tr><td>p95 &lt; 1500 ms</td><td>95 ms</td><td class='b-pass'>PASS</td></tr>
+<tr><td>p99 &lt; 3000 ms</td><td>99 ms</td><td class='b-pass'>PASS</td></tr>
+<tr><td>error &lt; 1%</td><td>0.00%</td><td class='b-pass'>PASS</td></tr>
+</tbody></table><div class='mut' style='margin-top:8px'>429/5xx counted: 0 / 0 (server-side; k6 does not retry).</div></div>
+<h2>Latency vs size (chars) — p50</h2><div class='panel'><svg viewBox="0 0 600 230" width="100%" style="max-width:600px" role="img"><text x="88" y="28" font-size="12" text-anchor="end" fill="#5b6470">100</text><rect x="96" y="15" width="308" height="18" rx="4" fill="#4f7cff"/><text x="412" y="28" font-size="12" fill="#2b313a">94ms</text><text x="88" y="58" font-size="12" text-anchor="end" fill="#5b6470">500</text><rect x="96" y="45" width="374" height="18" rx="4" fill="#4f7cff"/><text x="478" y="58" font-size="12" fill="#2b313a">114ms</text><text x="88" y="88" font-size="12" text-anchor="end" fill="#5b6470">1000</text><rect x="96" y="75" width="423" height="18" rx="4" fill="#4f7cff"/><text x="527" y="88" font-size="12" fill="#2b313a">129ms</text><text x="88" y="118" font-size="12" text-anchor="end" fill="#5b6470">2000</text><rect x="96" y="105" width="423" height="18" rx="4" fill="#4f7cff"/><text x="527" y="118" font-size="12" fill="#2b313a">129ms</text><text x="88" y="148" font-size="12" text-anchor="end" fill="#5b6470">4000</text><rect x="96" y="135" width="440" height="18" rx="4" fill="#4f7cff"/><text x="544" y="148" font-size="12" fill="#2b313a">134ms</text><text x="88" y="178" font-size="12" text-anchor="end" fill="#5b6470">8000</text><rect x="96" y="165" width="387" height="18" rx="4" fill="#4f7cff"/><text x="491" y="178" font-size="12" fill="#2b313a">118ms</text><text x="88" y="208" font-size="12" text-anchor="end" fill="#5b6470">10000</text><rect x="96" y="195" width="400" height="18" rx="4" fill="#4f7cff"/><text x="504" y="208" font-size="12" fill="#2b313a">122ms</text></svg>
+<table style='margin-top:10px'><thead><tr><th>chars</th><th>p50</th><th>p95</th><th>p99</th><th>n_ok</th><th>err</th></tr></thead><tbody>
+<tr><td>100</td><td>94</td><td>121</td><td>124</td><td>3</td><td>0</td></tr>
+<tr><td>500</td><td>114</td><td>123</td><td>123</td><td>3</td><td>0</td></tr>
+<tr><td>1000</td><td>129</td><td>138</td><td>139</td><td>3</td><td>0</td></tr>
+<tr><td>2000</td><td>129</td><td>130</td><td>130</td><td>3</td><td>0</td></tr>
+<tr><td>4000</td><td>134</td><td>140</td><td>140</td><td>3</td><td>0</td></tr>
+<tr><td>8000</td><td>118</td><td>123</td><td>123</td><td>3</td><td>0</td></tr>
+<tr><td>10000</td><td>122</td><td>132</td><td>133</td><td>3</td><td>0</td></tr>
+</tbody></table></div>
+<h2>Latency vs turns (turns) — p50</h2><div class='panel'><svg viewBox="0 0 600 230" width="100%" style="max-width:600px" role="img"><text x="88" y="28" font-size="12" text-anchor="end" fill="#5b6470">1</text><rect x="96" y="15" width="371" height="18" rx="4" fill="#4f7cff"/><text x="475" y="28" font-size="12" fill="#2b313a">119ms</text><text x="88" y="58" font-size="12" text-anchor="end" fill="#5b6470">2</text><rect x="96" y="45" width="287" height="18" rx="4" fill="#4f7cff"/><text x="391" y="58" font-size="12" fill="#2b313a">92ms</text><text x="88" y="88" font-size="12" text-anchor="end" fill="#5b6470">5</text><rect x="96" y="75" width="440" height="18" rx="4" fill="#4f7cff"/><text x="544" y="88" font-size="12" fill="#2b313a">141ms</text><text x="88" y="118" font-size="12" text-anchor="end" fill="#5b6470">10</text><rect x="96" y="105" width="430" height="18" rx="4" fill="#4f7cff"/><text x="534" y="118" font-size="12" fill="#2b313a">138ms</text><text x="88" y="148" font-size="12" text-anchor="end" fill="#5b6470">20</text><rect x="96" y="135" width="415" height="18" rx="4" fill="#4f7cff"/><text x="519" y="148" font-size="12" fill="#2b313a">133ms</text><text x="88" y="178" font-size="12" text-anchor="end" fill="#5b6470">35</text><rect x="96" y="165" width="365" height="18" rx="4" fill="#4f7cff"/><text x="469" y="178" font-size="12" fill="#2b313a">117ms</text><text x="88" y="208" font-size="12" text-anchor="end" fill="#5b6470">50</text><rect x="96" y="195" width="377" height="18" rx="4" fill="#4f7cff"/><text x="481" y="208" font-size="12" fill="#2b313a">121ms</text></svg>
+<table style='margin-top:10px'><thead><tr><th>turns</th><th>p50</th><th>p95</th><th>p99</th><th>n_ok</th><th>err</th></tr></thead><tbody>
+<tr><td>1</td><td>119</td><td>123</td><td>124</td><td>3</td><td>0</td></tr>
+<tr><td>2</td><td>92</td><td>130</td><td>133</td><td>3</td><td>0</td></tr>
+<tr><td>5</td><td>141</td><td>141</td><td>141</td><td>3</td><td>0</td></tr>
+<tr><td>10</td><td>138</td><td>141</td><td>142</td><td>3</td><td>0</td></tr>
+<tr><td>20</td><td>133</td><td>134</td><td>134</td><td>3</td><td>0</td></tr>
+<tr><td>35</td><td>117</td><td>137</td><td>139</td><td>3</td><td>0</td></tr>
+<tr><td>50</td><td>121</td><td>131</td><td>132</td><td>3</td><td>0</td></tr>
+</tbody></table></div>
+<h2>p95 trend — last 6 runs</h2><div class='panel'><svg viewBox="0 0 600 170" width="100%" style="max-width:600px"><line x1="46" y1="14" x2="46" y2="144" stroke="#e7eaee"/><line x1="46" y1="144" x2="586" y2="144" stroke="#e7eaee"/><line x1="46" y1="62" x2="586" y2="62" stroke="#e5484d" stroke-dasharray="4 3"/><text x="530" y="58" font-size="10" fill="#e5484d">SLO 1500</text><polyline fill="none" stroke="#4f7cff" stroke-width="2" points="46,86 154,26 262,75 370,139 478,139 586,139"/><circle cx="46" cy="86" r="3" fill="#4f7cff"/><text x="46" y="162" font-size="9" fill="#9aa3ad" text-anchor="middle">1</text><circle cx="154" cy="26" r="3" fill="#4f7cff"/><text x="154" y="162" font-size="9" fill="#9aa3ad" text-anchor="middle">2</text><circle cx="262" cy="75" r="3" fill="#4f7cff"/><text x="262" y="162" font-size="9" fill="#9aa3ad" text-anchor="middle">3</text><circle cx="370" cy="139" r="3" fill="#4f7cff"/><text x="370" y="162" font-size="9" fill="#9aa3ad" text-anchor="middle">4</text><circle cx="478" cy="139" r="3" fill="#4f7cff"/><text x="478" y="162" font-size="9" fill="#9aa3ad" text-anchor="middle">5</text><circle cx="586" cy="139" r="3" fill="#4f7cff"/><text x="586" y="162" font-size="9" fill="#9aa3ad" text-anchor="middle">6</text><text x="2" y="20" font-size="10" fill="#6b7480">2386</text><text x="2" y="144" font-size="10" fill="#6b7480">0</text></svg>
+<div class='mut' style='margin-top:6px'>each point = one run (target: mock); dashed line = p95 SLO. Regression gate fails when a run breaches baseline +25%.</div></div>
+<h2>Key findings</h2><div class='chips'><span class='chip'>🚩 rate-limit knee ~5 RPS/key, no <code>Retry-After</code></span><span class='chip'>📦 no size cap (≤5 MB → 11.5 s)</span><span class='chip'>🐛 version trap: session needs 2026-04-15</span><span class='chip'>✅ latency flat vs size & turns</span></div>
+<p class='mut' style='margin-top:18px'>Full analysis: <a href='../PERF_REPORT.md'>PERF_REPORT.md</a> · findings: <a href='../FINDINGS.md'>FINDINGS.md</a> · harness validation: <a href='../MOCK_VALIDATION.md'>MOCK_VALIDATION.md</a></p>
+</div></body></html>
